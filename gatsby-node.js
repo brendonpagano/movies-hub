@@ -66,11 +66,15 @@ module.exports.sourceNodes = async ({
   const request = makeTmdbApiWrapper()
   const movies = []
 
-  for (let page = 1; page <= 10; page++) {
-    console.log("Fetching page " + page)
-    const response = await request("/movie/popular", { page })
-    movies.push(...response.results)
-  }
+  await Promise.all(
+    Array.from(new Array(10)).map(async (_, i) => {
+      const page = i + 1
+
+      console.log("Fetching page ", page)
+      const response = await request("/movie/popular", { page })
+      movies.push(...response.results)
+    })
+  )
 
   movies.forEach(movie => {
     const node = {
