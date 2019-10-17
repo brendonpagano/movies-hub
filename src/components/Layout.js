@@ -12,7 +12,7 @@ import "./Layout.css"
 import { GLOBAL_PADDING, NAVBAR_HEIGHT } from "../constants/styles"
 
 const Wrapper = styled.div`
-  padding-top: ${NAVBAR_HEIGHT + GLOBAL_PADDING}px;
+  padding: ${NAVBAR_HEIGHT + GLOBAL_PADDING}px ${GLOBAL_PADDING * 2}px;
 `
 
 const Layout = ({ children }) => (
