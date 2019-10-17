@@ -41,7 +41,7 @@ const DesktopNavbar = () => {
     <>
       <NavigationList sty>
         {navItems.map(item => (
-          <NavItem>
+          <NavItem key={item.url}>
             <Link to={item.url}>{item.name}</Link>
           </NavItem>
         ))}
