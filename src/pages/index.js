@@ -6,7 +6,9 @@ import Layout from "../components/Layout"
 const HomePage = () => {
   return (
     <Layout>
-      <span>Teste</span>
+      <p style={{ color: "white" }}>
+        Teste <i className="fas fa-star "></i>
+      </p>
     </Layout>
   )
 }
