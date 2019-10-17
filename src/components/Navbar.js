@@ -3,9 +3,10 @@ import React from "react"
 import styled from "@emotion/styled"
 
 // Components
+import DesktopNavbar from "./DesktopNavbar"
 import { GLOBAL_PADDING, NAVBAR_HEIGHT } from "../constants/styles"
 
-const Wrapper = styled.div`
+const NavbarWrapper = styled.div`
   position: fixed;
   display: flex;
   width: 100%;
@@ -18,13 +19,14 @@ const Wrapper = styled.div`
 
 const ApplicationLogo = styled.img`
   width: auto;
-  height: ${NAVBAR_HEIGHT - 20}px;
+  height: 100%;
 `
 
 const Navbar = () => (
-  <Wrapper>
+  <NavbarWrapper>
     <ApplicationLogo alt="Application Logo" src="/logo.png" />
-  </Wrapper>
+    <DesktopNavbar />
+  </NavbarWrapper>
 )
 
 export default Navbar
