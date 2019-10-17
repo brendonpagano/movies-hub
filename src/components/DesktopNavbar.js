@@ -4,11 +4,14 @@ import { Link } from "gatsby"
 
 const NavigationList = styled.ul`
   display: flex;
+  align-self: center;
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 `
 
 const NavItem = styled.li`
-  margin-left: 18px;
+  margin-left: 25px;
   font-weight: 900;
   font-size: 13px;
   color: #e5e5e5;
@@ -22,6 +25,9 @@ const NavItem = styled.li`
     color: inherit;
     text-decoration: none;
   }
+  i {
+    font-size: 18px;
+  }
 `
 
 const navItems = [
@@ -33,19 +39,23 @@ const navItems = [
 const DesktopNavbar = () => {
   return (
     <>
-      <NavigationList>
+      <NavigationList sty>
         {navItems.map(item => (
           <NavItem>
             <Link to={item.url}>{item.name}</Link>
           </NavItem>
         ))}
       </NavigationList>
-      <NavigationList>
+      <NavigationList style={{ justifyContent: "flex-end" }}>
         <NavItem>
           <i className="fas fa-search"></i>
         </NavItem>
-        <NavItem>Notifications</NavItem>
-        <NavItem>My Account</NavItem>
+        <NavItem>
+          <i className="fas fa-bell"></i>
+        </NavItem>
+        <NavItem>
+          <i className="fas fa-user"></i>
+        </NavItem>
       </NavigationList>
     </>
   )
