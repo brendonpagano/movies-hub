@@ -7,6 +7,7 @@ import Navbar from "./Navbar"
 
 // Styles
 import "normalize.css"
+import "@fortawesome/fontawesome-free/css/all.css"
 import "./Layout.css"
 import { GLOBAL_PADDING, NAVBAR_HEIGHT } from "../constants/styles"
 
