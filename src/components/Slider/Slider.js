@@ -74,10 +74,10 @@ const Slider = ({ children, className, activeSlide }) => {
           </SliderContainer>
         </div>
         {sliding.hasPrev && (
-          <SlideButton onClick={sliding.handlePrev} type="prev" />
+          <SlideButton onClick={sliding.handlePrev} type="left" />
         )}
         {sliding.hasNext && (
-          <SlideButton onClick={sliding.handleNext} type="next" />
+          <SlideButton onClick={sliding.handleNext} type="right" />
         )}
       </SliderWrapper>
       {currentSlide && (
