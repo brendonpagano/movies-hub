@@ -32,7 +32,7 @@ const SliderItem = styled(({ mediaInfo, children, ...props }) => (
   </SliderContext.Consumer>
 ))`
   flex: 1;
-  transition: transform 300ms ease 100ms;
+  transition: transform 300ms ease;
   margin: 0 3px;
   position: relative;
   cursor: pointer;
