@@ -5,7 +5,7 @@ import styled from "@emotion/styled"
 const SlideButton = styled(({ type, ...props }) => (
   <button {...props}>
     <span>
-      <i className={`fas fa-chevron-${type}`}></i>
+      <i className={`fas fa-2x fa-chevron-${type}`}></i>
     </span>
   </button>
 ))`
