@@ -6,8 +6,7 @@ import Layout from "../components/Layout"
 import Hero from "../components/Hero"
 import Section from "../components/Section"
 import SectionTitle from "../components/SectionTitle"
-import ContentSlider from "../components/ContentSlider"
-import SliderItem from "../components/SliderItem"
+import Slider from "../components/Slider"
 
 const HomePage = () => {
   const data = useStaticQuery(graphql`
@@ -34,39 +33,27 @@ const HomePage = () => {
       <Hero />
       <Section>
         <SectionTitle>Em alta</SectionTitle>
-        <ContentSlider>
+        <Slider>
           {data.allMovie.edges.map(({ node }) => (
-            <SliderItem
-              key={node.id}
-              title={node.title}
-              posterUrl={node.poster}
-            />
+            <Slider.Item key={node.id} mediaInfo={node} />
           ))}
-        </ContentSlider>
+        </Slider>
       </Section>
       <Section>
         <SectionTitle>Ação</SectionTitle>
-        <ContentSlider>
+        <Slider>
           {data.allMovie.edges.map(({ node }) => (
-            <SliderItem
-              key={node.id}
-              title={node.title}
-              posterUrl={node.poster}
-            />
+            <Slider.Item key={node.id} mediaInfo={node} />
           ))}
-        </ContentSlider>
+        </Slider>
       </Section>
       <Section>
         <SectionTitle>Drama</SectionTitle>
-        <ContentSlider>
+        <Slider>
           {data.allMovie.edges.map(({ node }) => (
-            <SliderItem
-              key={node.id}
-              title={node.title}
-              posterUrl={node.poster}
-            />
+            <Slider.Item key={node.id} mediaInfo={node} />
           ))}
-        </ContentSlider>
+        </Slider>
       </Section>
     </Layout>
   )
