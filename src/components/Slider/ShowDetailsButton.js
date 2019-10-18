@@ -10,7 +10,7 @@ const ShowDetailsButton = styled(props => (
   </button>
 ))`
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   left: 0;
   right: 0;
   opacity: 0;
@@ -22,9 +22,9 @@ const ShowDetailsButton = styled(props => (
 
   & > span {
     display: block;
-    width: 14px;
     margin: 0 auto;
     color: white;
+    font-size: 20px;
   }
 `
 
