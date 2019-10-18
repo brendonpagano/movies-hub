@@ -11,7 +11,7 @@ import Slider from "../components/Slider"
 const HomePage = () => {
   const data = useStaticQuery(graphql`
     query MoviesQuery {
-      allMovie(limit: 20, skip: 0) {
+      allMovie(limit: 50, skip: 0) {
         edges {
           node {
             id
