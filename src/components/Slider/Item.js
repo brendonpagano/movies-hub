@@ -19,13 +19,13 @@ const SliderPreviewImage = styled.img`
 
 const SliderItem = styled(({ mediaInfo, children, ...props }) => (
   <SliderContext.Consumer>
-    {({ onSelectSlide, currentSlide, elementRef }) => {
+    {({ onSelectSlide, onPlayMedia, currentSlide, elementRef }) => {
       const isActive = currentSlide && currentSlide.id === mediaInfo.id
 
       return (
         <div ref={elementRef} {...props}>
           <SliderPreviewImage alt={mediaInfo.title} src={mediaInfo.poster} />
-          <PlayButton />
+          <PlayButton onClick={() => onPlayMedia(mediaInfo)} />
           <ShowDetailsButton onClick={() => onSelectSlide(mediaInfo)} />
           {isActive && <Mark />}
         </div>

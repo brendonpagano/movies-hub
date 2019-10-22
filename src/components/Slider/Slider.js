@@ -54,11 +54,13 @@ const Slider = ({ children, className, activeSlide }) => {
   const sliding = useSliding(width, React.Children.count(children))
 
   const onSelect = media => setCurrentSlide(media)
+  const onPlay = media => {}
   const onClose = () => setCurrentSlide(null)
 
   const contextValue = {
     onSelectSlide: onSelect,
     onCloseSlide: onClose,
+    onPlayMedia: onPlay,
     elementRef,
     currentSlide,
   }
