@@ -11,34 +11,69 @@ import Slider from "../components/Slider"
 const HomePage = () => {
   const data = useStaticQuery(graphql`
     query MoviesQuery {
-      allMovie(limit: 50, skip: 0) {
+      allMediaGenre {
         edges {
           node {
             id
+            genreId
+            name
+          }
+        }
+      }
+      allMovie(limit: 150, skip: 0) {
+        edges {
+          node {
+            id
+            movieId
+            genreIds
             title
+            description
             releaseDate
             poster
             backdrop
-            description
           }
         }
       }
     }
   `)
 
-  console.log(data)
+  const movieSections = data.allMovie.edges.reduce((acc, { node }) => {
+    for (const gId of node.genreIds) {
+      if (!acc.hasOwnProperty(gId)) {
+        acc[gId] = {
+          title: "",
+          movies: [],
+        }
+      }
+
+      acc[gId].movies.push(node)
+    }
+
+    return acc
+  }, {})
+
+  for (const { node } of data.allMediaGenre.edges) {
+    if (movieSections.hasOwnProperty(node.genreId)) {
+      movieSections[node.genreId].title = node.name
+    }
+  }
 
   return (
     <Layout>
       <Hero />
-      <Section>
-        <SectionTitle>Em alta</SectionTitle>
-        <Slider>
-          {data.allMovie.edges.map(({ node }) => (
-            <Slider.Item key={node.id} mediaInfo={node} />
-          ))}
-        </Slider>
-      </Section>
+      {Object.keys(movieSections).map(k => {
+        const section = movieSections[k]
+        return (
+          <Section key={k}>
+            <SectionTitle>{section.title}</SectionTitle>
+            <Slider>
+              {section.movies.map(node => (
+                <Slider.Item key={node.id} mediaInfo={node} />
+              ))}
+            </Slider>
+          </Section>
+        )
+      })}
     </Layout>
   )
 }
