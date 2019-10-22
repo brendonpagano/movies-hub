@@ -36,7 +36,6 @@ const SliderItem = styled(({ mediaInfo, children, ...props }) => (
   margin: 0 3px;
   position: relative;
   cursor: pointer;
-  z-index: 999;
 `
 
 export default SliderItem
