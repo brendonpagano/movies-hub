@@ -7,7 +7,7 @@ const Mark = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  bottom: -4px;
+  bottom: 0px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
   z-index: 4;
 
