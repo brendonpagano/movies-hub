@@ -84,7 +84,8 @@ module.exports.sourceNodes = async ({
     actions.createNode({
       id: createNodeId(movie.id),
       movieId: movie.id,
-      title: movie.original_title,
+      title: movie.title,
+      originalTitle: movie.original_title,
       poster: `https://image.tmdb.org/t/p/w780` + movie.poster_path,
       backdrop: `https://image.tmdb.org/t/p/w1280` + movie.backdrop_path,
       description: movie.overview,
