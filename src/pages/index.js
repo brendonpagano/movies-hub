@@ -39,22 +39,6 @@ const HomePage = () => {
           ))}
         </Slider>
       </Section>
-      <Section>
-        <SectionTitle>Ação</SectionTitle>
-        <Slider>
-          {data.allMovie.edges.map(({ node }) => (
-            <Slider.Item key={node.id} mediaInfo={node} />
-          ))}
-        </Slider>
-      </Section>
-      <Section>
-        <SectionTitle>Drama</SectionTitle>
-        <Slider>
-          {data.allMovie.edges.map(({ node }) => (
-            <Slider.Item key={node.id} mediaInfo={node} />
-          ))}
-        </Slider>
-      </Section>
     </Layout>
   )
 }
