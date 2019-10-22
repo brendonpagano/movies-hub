@@ -19,12 +19,13 @@ const ShowDetailsButton = styled(props => (
   border: 0;
   outline: none;
   width: 100%;
+  cursor: inherit;
 
   & > span {
     display: block;
     margin: 0 auto;
     color: white;
-    font-size: 20px;
+    font-size: 1.6rem;
   }
 `
 
