@@ -5,6 +5,7 @@ import styled from "@emotion/styled"
 // Components
 import SliderContext from "./context"
 import Mark from "./Mark"
+import PlayButton from "./PlayButton"
 import ShowDetailsButton from "./ShowDetailsButton"
 
 // Constants
@@ -24,6 +25,7 @@ const SliderItem = styled(({ mediaInfo, children, ...props }) => (
       return (
         <div ref={elementRef} {...props}>
           <SliderPreviewImage alt={mediaInfo.title} src={mediaInfo.poster} />
+          <PlayButton />
           <ShowDetailsButton onClick={() => onSelectSlide(mediaInfo)} />
           {isActive && <Mark />}
         </div>

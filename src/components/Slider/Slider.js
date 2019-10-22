@@ -9,6 +9,7 @@ import useSliding from "./useSliding"
 // Components
 import SliderItem, { SLIDER_ITEM_TRANSLATION, SLIDER_ITEM_SCALE } from "./Item"
 import ShowDetailsButton from "./ShowDetailsButton"
+import PlayButton from "./PlayButton"
 import SliderContext from "./context"
 import SlideButton from "./SlideButton"
 import MediaContent from "./MediaContent"
@@ -32,7 +33,8 @@ const SliderContainer = styled.div`
       transform: scale(${SLIDER_ITEM_SCALE}) !important;
     }
 
-    & ${SliderItem}:hover ${ShowDetailsButton} {
+    & ${SliderItem}:hover ${ShowDetailsButton},
+    & ${SliderItem}:hover ${PlayButton} {
       opacity: 1;
     }
 
