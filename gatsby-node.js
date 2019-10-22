@@ -65,31 +65,47 @@ module.exports.sourceNodes = async ({
 }) => {
   const request = makeTmdbApiWrapper()
   const movies = []
+  const { genres } = await request("/genre/movie/list", { language: "pt-BR" })
 
   await Promise.all(
     Array.from(new Array(10)).map(async (_, i) => {
       const page = i + 1
 
       console.log("Fetching page ", page)
-      const response = await request("/movie/popular", { page })
+      const response = await request("/movie/popular", {
+        page,
+        language: "pt-BR",
+      })
       movies.push(...response.results)
     })
   )
 
-  movies.forEach(movie => {
-    const node = {
+  movies.forEach(movie =>
+    actions.createNode({
       id: createNodeId(movie.id),
+      movieId: movie.id,
       title: movie.original_title,
       poster: `https://image.tmdb.org/t/p/w780` + movie.poster_path,
       backdrop: `https://image.tmdb.org/t/p/w1280` + movie.backdrop_path,
       description: movie.overview,
       releaseDate: movie.release_date,
+      genreIds: movie.genre_ids,
       internal: {
         type: "Movie",
         contentDigest: createContentDigest(movie),
       },
-    }
+    })
+  )
 
-    actions.createNode(node)
-  })
+  genres.forEach(genre =>
+    actions.createNode({
+      id: createNodeId(genre.id),
+      genreId: genre.id,
+      name: genre.name,
+      internal: {
+        type: "MediaGenre",
+        contentDigest: createContentDigest(genre),
+      },
+    })
+  )
 }
