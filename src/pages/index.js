@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 // Components
 import Layout from "../components/Layout"
@@ -8,55 +8,8 @@ import Section from "../components/Section"
 import SectionTitle from "../components/SectionTitle"
 import Slider from "../components/Slider"
 
-const HomePage = () => {
-  const data = useStaticQuery(graphql`
-    query MoviesQuery {
-      allMediaGenre {
-        edges {
-          node {
-            id
-            genreId
-            name
-          }
-        }
-      }
-      allMovie(limit: 150, skip: 0) {
-        edges {
-          node {
-            id
-            movieId
-            genreIds
-            title
-            description
-            releaseDate
-            poster
-            backdrop
-          }
-        }
-      }
-    }
-  `)
-
-  const movieSections = data.allMovie.edges.reduce((acc, { node }) => {
-    for (const gId of node.genreIds) {
-      if (!acc.hasOwnProperty(gId)) {
-        acc[gId] = {
-          title: "",
-          movies: [],
-        }
-      }
-
-      acc[gId].movies.push(node)
-    }
-
-    return acc
-  }, {})
-
-  for (const { node } of data.allMediaGenre.edges) {
-    if (movieSections.hasOwnProperty(node.genreId)) {
-      movieSections[node.genreId].title = node.name
-    }
-  }
+const HomePage = ({ data }) => {
+  const movieSections = makeMovieSections(data)
 
   return (
     <Layout>
@@ -78,4 +31,56 @@ const HomePage = () => {
   )
 }
 
+const makeMovieSections = data => {
+  const movieSections = data.allMovie.edges.reduce((acc, { node }) => {
+    for (const gId of node.genreIds) {
+      if (!acc.hasOwnProperty(gId)) {
+        acc[gId] = {
+          title: "",
+          movies: [],
+        }
+      }
+
+      acc[gId].movies.push(node)
+    }
+
+    return acc
+  }, {})
+
+  for (const { node } of data.allMediaGenre.edges) {
+    if (movieSections.hasOwnProperty(node.genreId)) {
+      movieSections[node.genreId].title = node.name
+    }
+  }
+
+  return movieSections
+}
+
 export default HomePage
+export const query = graphql`
+  query MoviesQuery {
+    allMediaGenre {
+      edges {
+        node {
+          id
+          genreId
+          name
+        }
+      }
+    }
+    allMovie(limit: 150, skip: 0) {
+      edges {
+        node {
+          id
+          movieId
+          genreIds
+          title
+          description
+          releaseDate
+          poster
+          backdrop
+        }
+      }
+    }
+  }
+`
