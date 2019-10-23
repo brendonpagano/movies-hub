@@ -3,8 +3,8 @@ import React, { useState } from "react"
 import styled from "@emotion/styled"
 
 // Custom Hooks
-import useSizeElement from "./hooks/useSizeElement"
-import useSliding from "./hooks/useSliding"
+import useSizeElement from "../../hooks/useSizeElement"
+import useSliding from "../../hooks/useSliding"
 
 // Components
 import SliderItem, { SLIDER_ITEM_TRANSLATION, SLIDER_ITEM_SCALE } from "./Item"
