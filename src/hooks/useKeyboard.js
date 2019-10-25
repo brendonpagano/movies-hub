@@ -8,7 +8,22 @@ function useKeyboard(listenToKeys) {
       const { key } = e
       const timestamp = new Date().getTime()
 
-      alert(JSON.stringify({ key, timestamp }, null, 4))
+      console.log(e)
+
+      alert(
+        JSON.stringify(
+          {
+            key: e.key,
+            which: e.which,
+            charCode: e.charCode,
+            code: e.code,
+            keyCode: e.keyCode,
+            timestamp,
+          },
+          null,
+          4
+        )
+      )
 
       if (listenToKeys && listenToKeys.includes(key)) {
         setPressedKey({ key, timestamp })
