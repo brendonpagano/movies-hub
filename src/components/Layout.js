@@ -4,6 +4,7 @@ import styled from "@emotion/styled"
 
 // Components
 import Navbar from "./Navbar"
+import ControllableApp from "./ControllableApp"
 
 // Styles
 import "normalize.css"
@@ -17,8 +18,10 @@ const Wrapper = styled.div`
 
 const Layout = ({ children }) => (
   <Wrapper>
-    <Navbar />
-    {children}
+    <ControllableApp>
+      <Navbar />
+      {children}
+    </ControllableApp>
   </Wrapper>
 )
 
