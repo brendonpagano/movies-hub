@@ -1,6 +1,10 @@
+// Node Modules
 import React from "react"
 import styled from "@emotion/styled"
+
+// Components
 import { Link } from "gatsby"
+import { DisplayPosition } from "./ControllableApp"
 
 const NavigationList = styled.ul`
   display: flex;
@@ -40,22 +44,30 @@ const DesktopNavbar = () => {
   return (
     <>
       <NavigationList sty>
-        {navItems.map(item => (
-          <NavItem key={item.url}>
-            <Link to={item.url}>{item.name}</Link>
-          </NavItem>
+        {navItems.map((item, i) => (
+          <DisplayPosition key={item.url} row={0} col={1 + i}>
+            <NavItem>
+              <Link to={item.url}>{item.name}</Link>
+            </NavItem>
+          </DisplayPosition>
         ))}
       </NavigationList>
       <NavigationList style={{ justifyContent: "flex-end" }}>
-        <NavItem>
-          <i className="fas fa-search"></i>
-        </NavItem>
-        <NavItem>
-          <i className="fas fa-bell"></i>
-        </NavItem>
-        <NavItem>
-          <i className="fas fa-user"></i>
-        </NavItem>
+        <DisplayPosition row={0} col={navItems.length + 1}>
+          <NavItem>
+            <i className="fas fa-search"></i>
+          </NavItem>
+        </DisplayPosition>
+        <DisplayPosition row={0} col={navItems.length + 2}>
+          <NavItem>
+            <i className="fas fa-bell"></i>
+          </NavItem>
+        </DisplayPosition>
+        <DisplayPosition row={0} col={navItems.length + 3}>
+          <NavItem>
+            <i className="fas fa-user"></i>
+          </NavItem>
+        </DisplayPosition>
       </NavigationList>
     </>
   )

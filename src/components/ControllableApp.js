@@ -1,5 +1,5 @@
 // Node Modules
-import React, { useState, createContext, useEffect } from "react"
+import React, { useState, createContext, useEffect, useContext } from "react"
 
 const keyActions = {
   ArrowUp: ([row, col]) => [--row, col],
@@ -18,6 +18,7 @@ const ControllerContext = createContext()
 
 const ControllableApp = ({ children }) => {
   const [controllerPosition, setControllerPosition] = useState([0, 0])
+  console.log(controllerPosition)
 
   useEffect(() => {
     function onKeyUp(e) {
@@ -56,6 +57,18 @@ const ControllableApp = ({ children }) => {
     <ControllerContext.Provider value={contextValue}>
       {children}
     </ControllerContext.Provider>
+  )
+}
+
+export const DisplayPosition = ({ row, col, children }) => {
+  const { controllerPosition } = useContext(ControllerContext)
+  const isActive =
+    row === controllerPosition[0] && col === controllerPosition[1]
+
+  return React.Children.only(
+    React.cloneElement(children, {
+      className: isActive ? "is-controller-selected" : undefined,
+    })
   )
 }
 

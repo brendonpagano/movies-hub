@@ -6,6 +6,7 @@ import styled from "@emotion/styled"
 import DesktopNavbar from "./DesktopNavbar"
 import { Link } from "gatsby"
 import { GLOBAL_PADDING, NAVBAR_HEIGHT } from "../constants/styles"
+import { DisplayPosition } from "./ControllableApp"
 
 const NavbarWrapper = styled.div`
   position: fixed;
@@ -32,7 +33,9 @@ const ApplicationLogo = styled.img`
 const Navbar = () => (
   <NavbarWrapper>
     <Link to="/" style={{ display: "contents" }}>
-      <ApplicationLogo alt="Application Logo" src="/logo.png" />
+      <DisplayPosition row={0} col={0}>
+        <ApplicationLogo alt="Application Logo" src="/logo.png" />
+      </DisplayPosition>
     </Link>
     <DesktopNavbar />
   </NavbarWrapper>
