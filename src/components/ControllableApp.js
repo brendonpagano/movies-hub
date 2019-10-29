@@ -1,59 +1,33 @@
 // Node Modules
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 
 // Context
 import ControllerContext from "../contexts/ControllerContext"
 
 // Custom Hooks
 import useKeyboardScrollBlocking from "../hooks/useKeyboardScrollBlocking"
-
-const keyActions = {
-  ArrowUp: ([row, col]) => [--row, col],
-  ArrowDown: ([row, col]) => [++row, col],
-  ArrowLeft: ([row, col]) => [row, --col],
-  ArrowRight: ([row, col]) => [row, ++col],
-  Esc: () => [],
-
-  // We use `13` instead of `Enter` since some Android controllers have a
-  // key property as `Unidentified` but still has the keyCode to 13 when
-  // pressing the OK button.
-  13: () => [],
-}
+import useController, { APP_KEYS } from "../hooks/useController"
 
 const ControllableApp = ({ children }) => {
   const [controllerPosition, setControllerPosition] = useState([0, 0])
   console.log("Pos: " + JSON.stringify(controllerPosition))
 
+  function updateControllerPosition(dx, dy) {
+    const [row, col] = controllerPosition
+    const newControllerPos = [row + dx, col + dy]
+    setControllerPosition(newControllerPos)
+  }
+
   useKeyboardScrollBlocking()
-
-  useEffect(() => {
-    function onKeyUp(e) {
-      const { key, keyCode } = e
-      let f
-
-      if (keyActions.hasOwnProperty(key)) {
-        f = keyActions[key]
-      } else if (keyActions.hasOwnProperty(keyCode)) {
-        f = keyActions[keyCode]
-      } else {
-        return
-      }
-
-      const newControllerPosition = f(controllerPosition)
-
-      if (
-        newControllerPosition[0] !== controllerPosition[0] ||
-        newControllerPosition[1] !== controllerPosition[1]
-      ) {
-        setControllerPosition(newControllerPosition)
-      }
-    }
-
-    window.addEventListener("keyup", onKeyUp)
-    return () => {
-      window.removeEventListener("keyup", onKeyUp)
-    }
-  })
+  useController(
+    {
+      [APP_KEYS.UP]: () => updateControllerPosition(-1, 0),
+      [APP_KEYS.DOWN]: () => updateControllerPosition(1, 0),
+      [APP_KEYS.LEFT]: () => updateControllerPosition(0, -1),
+      [APP_KEYS.RIGHT]: () => updateControllerPosition(0, 1),
+    },
+    [controllerPosition]
+  )
 
   const contextValue = {
     controllerPosition,
