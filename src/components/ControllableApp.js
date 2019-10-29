@@ -1,5 +1,11 @@
 // Node Modules
-import React, { useState, createContext, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
+
+// Context
+import ControllerContext from "../contexts/ControllerContext"
+
+// Custom Hooks
+import useKeyboardScrollBlocking from "../hooks/useKeyboardScrollBlocking"
 
 const keyActions = {
   ArrowUp: ([row, col]) => [--row, col],
@@ -14,11 +20,11 @@ const keyActions = {
   13: () => [],
 }
 
-const ControllerContext = createContext()
-
 const ControllableApp = ({ children }) => {
   const [controllerPosition, setControllerPosition] = useState([0, 0])
-  console.log(controllerPosition)
+  console.log("Pos: " + JSON.stringify(controllerPosition))
+
+  useKeyboardScrollBlocking()
 
   useEffect(() => {
     function onKeyUp(e) {
