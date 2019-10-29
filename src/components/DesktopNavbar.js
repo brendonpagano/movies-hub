@@ -44,29 +44,21 @@ const DesktopNavbar = () => {
     <>
       <NavigationList>
         {navItems.map((item, i) => (
-          <DisplayPosition key={item.url} row={0} col={1 + i}>
-            <NavItem>
-              <Link to={item.url}>{item.name}</Link>
-            </NavItem>
-          </DisplayPosition>
+          <NavItem>
+            <Link to={item.url}>{item.name}</Link>
+          </NavItem>
         ))}
       </NavigationList>
       <NavigationList style={{ justifyContent: "flex-end" }}>
-        <DisplayPosition row={0} col={navItems.length + 1}>
-          <NavItem>
-            <i className="fas fa-search"></i>
-          </NavItem>
-        </DisplayPosition>
-        <DisplayPosition row={0} col={navItems.length + 2}>
-          <NavItem>
-            <i className="fas fa-bell"></i>
-          </NavItem>
-        </DisplayPosition>
-        <DisplayPosition row={0} col={navItems.length + 3}>
-          <NavItem>
-            <i className="fas fa-user"></i>
-          </NavItem>
-        </DisplayPosition>
+        <NavItem>
+          <i className="fas fa-search"></i>
+        </NavItem>
+        <NavItem>
+          <i className="fas fa-bell"></i>
+        </NavItem>
+        <NavItem>
+          <i className="fas fa-user"></i>
+        </NavItem>
       </NavigationList>
     </>
   )
