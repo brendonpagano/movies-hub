@@ -5,6 +5,7 @@ import cx from "classnames"
 
 // Custom Hooks
 import useDisplayPosition from "../hooks/useDisplayPosition"
+import useController, { APP_KEYS } from "../hooks/useController"
 
 const ApplicationLogoImage = styled.img`
   width: auto;
@@ -13,6 +14,14 @@ const ApplicationLogoImage = styled.img`
 
 const ApplicationLogo = ({ position, className, ...props }) => {
   const isControllerSelected = useDisplayPosition(position || [0, 0])
+  useController(
+    {
+      [APP_KEYS.OK_BUTTON]: () => {
+        console.log("ApplicationLogo action")
+      },
+    },
+    [isControllerSelected]
+  )
 
   return (
     <ApplicationLogoImage
