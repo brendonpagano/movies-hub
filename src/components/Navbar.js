@@ -27,17 +27,14 @@ const NavbarWrapper = styled.div`
   }
 `
 
-const ApplicationLogo = styled.img`
-  width: auto;
-  height: 100%;
-`
-
 const Navbar = () => (
   <NavbarWrapper>
     <Link to="/" style={{ display: "contents" }}>
-      <DisplayPosition row={0} col={0}>
-        <ApplicationLogo alt="Application Logo" src="/logo.png" />
-      </DisplayPosition>
+      <ApplicationLogo
+        position={[0, 0]}
+        alt="Application Logo"
+        src="/logo.png"
+      />
     </Link>
     <DesktopNavbar />
   </NavbarWrapper>
