@@ -3,10 +3,12 @@ import React from "react"
 import styled from "@emotion/styled"
 
 // Components
-import DesktopNavbar from "./DesktopNavbar"
 import { Link } from "gatsby"
+import DesktopNavbar from "./DesktopNavbar"
+import ApplicationLogo from "./ApplicationLogo"
+
+// Constants
 import { GLOBAL_PADDING, NAVBAR_HEIGHT } from "../constants/styles"
-import { DisplayPosition } from "./ControllableApp"
 
 const NavbarWrapper = styled.div`
   position: fixed;

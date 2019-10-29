@@ -60,16 +60,4 @@ const ControllableApp = ({ children }) => {
   )
 }
 
-export const DisplayPosition = ({ row, col, children }) => {
-  const { controllerPosition } = useContext(ControllerContext)
-  const isActive =
-    row === controllerPosition[0] && col === controllerPosition[1]
-
-  return React.Children.only(
-    React.cloneElement(children, {
-      className: isActive ? "is-controller-selected" : undefined,
-    })
-  )
-}
-
 export default ControllableApp

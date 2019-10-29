@@ -4,7 +4,6 @@ import styled from "@emotion/styled"
 
 // Components
 import { Link } from "gatsby"
-import { DisplayPosition } from "./ControllableApp"
 
 const NavigationList = styled.ul`
   display: flex;
@@ -43,7 +42,7 @@ const navItems = [
 const DesktopNavbar = () => {
   return (
     <>
-      <NavigationList sty>
+      <NavigationList>
         {navItems.map((item, i) => (
           <DisplayPosition key={item.url} row={0} col={1 + i}>
             <NavItem>
