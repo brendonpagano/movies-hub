@@ -1,5 +1,5 @@
 // Node Modules
-import React from "react"
+import React, { useMemo } from "react"
 import styled from "@emotion/styled"
 import cx from "classnames"
 
@@ -14,14 +14,20 @@ const ApplicationLogoImage = styled.img`
 
 const ApplicationLogo = ({ position, className, ...props }) => {
   const isControllerSelected = useDisplayPosition(position || [0, 0])
-  useController(
-    {
-      [APP_KEYS.OK_BUTTON]: () => {
-        console.log("ApplicationLogo action")
-      },
-    },
+
+  const controllerActions = useMemo(
+    () =>
+      isControllerSelected
+        ? {
+            [APP_KEYS.OK_BUTTON]: () => {
+              console.log("ApplicationLogo action")
+            },
+          }
+        : {},
     [isControllerSelected]
   )
+
+  useController(controllerActions, [isControllerSelected])
 
   return (
     <ApplicationLogoImage
