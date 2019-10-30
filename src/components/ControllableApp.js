@@ -26,7 +26,7 @@ const ControllableApp = ({ children }) => {
       [APP_KEYS.LEFT]: () => updateControllerPosition(0, -1),
       [APP_KEYS.RIGHT]: () => updateControllerPosition(0, 1),
     },
-    [controllerPosition]
+    [...controllerPosition]
   )
 
   const contextValue = {
