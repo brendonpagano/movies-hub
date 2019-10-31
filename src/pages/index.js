@@ -14,12 +14,12 @@ const HomePage = ({ data }) => {
   return (
     <Layout>
       <Hero />
-      {Object.keys(movieSections).map(k => {
+      {Object.keys(movieSections).map((k, i) => {
         const section = movieSections[k]
         return (
           <Section key={k}>
             <SectionTitle>{section.title}</SectionTitle>
-            <Slider>
+            <Slider row={1 + i} col={0}>
               {section.movies.map(node => (
                 <Slider.Item key={node.id} mediaInfo={node} />
               ))}
