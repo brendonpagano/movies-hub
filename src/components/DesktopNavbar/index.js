@@ -32,14 +32,14 @@ const DesktopNavbar = () => {
     <>
       <NavigationList>
         {navItems.left.map((item, i) => (
-          <NavItem key={item.url} position={[0, 1 + i]}>
+          <NavItem key={item.url} row={0} col={1 + i}>
             <Link to={item.url}>{item.name}</Link>
           </NavItem>
         ))}
       </NavigationList>
       <NavigationList style={{ justifyContent: "flex-end" }}>
         {navItems.right.map((Comp, i) => (
-          <NavItem key={i} position={[0, 1 + navItems.left.length + i]}>
+          <NavItem key={i} row={0} col={1 + navItems.left.length + i}>
             <Comp />
           </NavItem>
         ))}

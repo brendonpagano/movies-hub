@@ -4,18 +4,19 @@ import styled from "@emotion/styled"
 import cx from "classnames"
 
 // Custom Hooks
-import useDisplayPosition from "../../hooks/useDisplayPosition"
 import useController, { APP_KEYS } from "../../hooks/useController"
 
-const NavItem = ({ position, className, ...props }) => {
-  const isControllerSelected = useDisplayPosition(position)
+// HOCs
+import withDisplayPosition from "../HOCs/withDisplayPosition"
 
+const NavItem = ({ isControllerSelected, className, ...props }) => {
+  console.log("NavItem", props.row, props.col)
   const controllerActions = useMemo(
     () =>
       isControllerSelected
         ? {
             [APP_KEYS.OK_BUTTON]: () => {
-              console.log("NavItem clicked on position", position)
+              console.log("NavItem clicked on position")
             },
           }
         : {},
@@ -35,7 +36,7 @@ const NavItem = ({ position, className, ...props }) => {
   )
 }
 
-export default styled(NavItem)`
+export default withDisplayPosition(styled(NavItem)`
   margin-left: 25px;
   font-weight: 900;
   font-size: 13px;
@@ -53,4 +54,4 @@ export default styled(NavItem)`
   i {
     font-size: 18px;
   }
-`
+`)

@@ -1,5 +1,5 @@
 // Node Modules
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useMemo } from "react"
 
 const PADDINGS = 110
 
@@ -27,9 +27,10 @@ const useSliding = (elementWidth, elementsCount) => {
     setDistance(distance - containerWidth)
   }
 
-  const slideProps = {
-    style: { transform: `translate3d(${distance}px, 0, 0)` },
-  }
+  const slideProps = useMemo(
+    () => ({ style: { transform: `translate3d(${distance}px, 0, 0)` } }),
+    [distance]
+  )
 
   const hasPrev = distance < 0
   const hasNext = viewed + totalInViewport < elementsCount
